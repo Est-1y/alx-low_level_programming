@@ -4,7 +4,7 @@
 int check_prime(int n, int i);
 
 /**
- * is_prime_number - shows if a no is prime
+ * is_prime_number - check if a no is prime
  * @n: no to be checked
  * Return: integral value
  */
@@ -25,9 +25,12 @@ int check_prime(int n, int i)
 {
 	if (n <= 1)
 		return (0);
+
 	if (n % i == 0 && i > 1)
 		return (0);
+
 	if ((n / i) < 1)
 		return (1);
+
 	return (check_prime(n, i + 1));
 }
