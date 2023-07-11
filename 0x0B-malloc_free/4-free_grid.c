@@ -1,20 +1,18 @@
 #include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
  * free_grid - frees array
  * @grid: grid
  * @height: dimension of grid
- * Description: frees memory of grid
  * Return: Nothing
  */
 
 void free_grid(int **grid, int height)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; i < height; i++)
+	for (; i < height; i++)
 	{
 		free(grid[i]);
 	}
