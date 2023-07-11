@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 /**
- * free_grid - frees 2d array
- * @grid: 2d grid
+ * free_grid - frees array
+ * @grid: grid
  * @height: dimension of grid
  * Description: frees memory of grid
  * Return: Nothing
@@ -18,6 +18,5 @@ void free_grid(int **grid, int height)
 	{
 		free(grid[i]);
 	}
-
 	free(grid);
 }
