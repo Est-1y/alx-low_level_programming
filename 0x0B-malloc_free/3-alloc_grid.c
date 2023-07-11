@@ -1,13 +1,11 @@
 #include "main.h"
 #include <stdlib.h>
-
 /**
  * alloc_grid - nested loop for grid making
  * @width: input of width
  * @height: input of height
  * Return: pointer to array
  */
-
 int **alloc_grid(int width, int height)
 {
 	int i, j, k, l;
@@ -33,12 +31,10 @@ int **alloc_grid(int width, int height)
 			{
 				free(a[j]);
 			}
-
 			free(a);
 			return (NULL);
 		}
 	}
-
 		for (i = 0; i < height; i++)
 		{
 			a[i] = malloc(sizeof(int) * width);
@@ -49,7 +45,6 @@ int **alloc_grid(int width, int height)
 				{
 					free(a[j]);
 				}
-
 				free(a);
 				return (NULL);
 			}
