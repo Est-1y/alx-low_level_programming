@@ -12,7 +12,7 @@ int main(void)
 {
 listint_t *head;
 listint_t *new;
-istint_t hello = {8, NULL};
+listint_t hello = {8, NULL};
 size_t n;
 
 head = &hello;
