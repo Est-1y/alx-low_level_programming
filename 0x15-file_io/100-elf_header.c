@@ -110,9 +110,9 @@ void print_data(unsigned char *e_ident)
 }
 
 /**
- *  * print_version - it prints the version of an elf header
- *   * @e_ident: it points to array containing the elf version
- *    */
+ * print_version - it prints the version of an elf header
+ * @e_ident: it points to array containing the elf version
+ */
 
 void print_version(unsigned char *e_ident)
 {
@@ -264,29 +264,29 @@ void close_elf(int elf)
 /**
  * main - it displays information that is contained in the
  * ELF header
- * @argc: argument count to be supplied to program
- * @argv: its the argument vector
+ * @arc: argument count to be supplied to program
+ * @arv: its the argument vector
  * Return: 0 (success)
  * Description: success if the file is an ELF File or
  * exit code 98 (fail)
  */
 
-int main(int __attribute__((__unused__)) argc, char *argv[])
+int main(int __attribute__((__unused__)) arc, char *arv[])
 {
 	Elf64_Ehdr *header;
 	int o, r;
 
-	o = open(argv[1], O_RDONLY);
+	o = open(arv[1], O_RDONLY);
 	if (o == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", arv[1]);
 		exit(98);
 	}
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
 	{
 		close_elf(o);
-		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", arv[1]);
 		exit(98);
 	}
 	r = read(o, header, sizeof(Elf64_Ehdr));
@@ -294,7 +294,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	{
 		free(header);
 		close_elf(o);
-		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", arv[1]);
 		exit(98);
 	}
 
