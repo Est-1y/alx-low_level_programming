@@ -1,30 +1,32 @@
-# make -f [file]
-
-
 CC = gcc
 SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Cleaning build artifacts
-pen_spark
+# Ensure Makefile works with files that have the same name as rules.
 .PHONY: all clean oclean fclean re
 
-# make files executable
-all: m.h $(OBJ)
+# Make all rule, respecting dependencies.
+all: $(NAME)
+
+$(NAME): $(OBJ) m.h
 	$(CC) $(OBJ) -o $(NAME)
 
-# clean temporary files and executable
+# Clean temporary files and executable.
 clean:
 	$(RM) *~ $(NAME)
 
-# clean object files
+# Clean object files.
 oclean:
 	$(RM) $(OBJ)
 
-# Cleaning temporary files, executables, and object files
+# Clean temporary files, executables, and object files.
 fclean: clean oclean
 
-# clean and rebuild source files
-re: oclean all
+# Clean and rebuild source files.
+re: fclean all
+
+# Compile object files from source files.
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
