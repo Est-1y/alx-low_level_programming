@@ -4,21 +4,25 @@ OBJ = $(SRC:.c=.o)
 NAME = school
 RM = rm -f
 
-# make files executable
-all : $(OBJ)
+# make files executable.
+all: $(NAME)
+
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-# cleans temporary and executable files
-clean :
+%.o: %.c
+	$(CC) -c $< -o $@
+
+# cleans temporary and executable files.
+clean:
 	$(RM) *~ $(NAME)
 
-# cleans object files
-oclean :
+# cleans object files.
+oclean:
 	$(RM) $(OBJ)
 
-# Prepping for rebuild
-pen_spark
-fclean : clean oclean
+# Prepping for rebuild.
+fclean: clean oclean
 
-# clean and rebuild source files
-re : oclean all
+# clean and rebuild source files.
+re: fclean all
