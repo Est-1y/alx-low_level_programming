@@ -1,0 +1,24 @@
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+RM = rm -f
+
+# make files executable
+all : $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# cleans temporary and executable files
+clean :
+	$(RM) *~ $(NAME)
+
+# cleans object files
+oclean :
+	$(RM) $(OBJ)
+
+# Prepping for rebuild
+pen_spark
+fclean : clean oclean
+
+# clean and rebuild source files
+re : oclean all
