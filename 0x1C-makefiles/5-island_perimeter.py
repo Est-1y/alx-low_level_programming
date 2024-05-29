@@ -6,7 +6,7 @@ Island Perimeter module
 
 def island_perimeter(grid):
     """
-    Calculate the perimeter.
+    
     """
     perimeter = 0
 
