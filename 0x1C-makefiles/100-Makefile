@@ -4,7 +4,7 @@ OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Ensure Makefile works with files that have the same name as rules.
+# confirms Makefile works with files that have the same name as rules.
 .PHONY: all clean oclean fclean re
 
 # Make all rule, respecting dependencies.
@@ -22,11 +22,18 @@ oclean:
 	$(RM) $(OBJ)
 
 # Clean temporary files, executables, and object files.
-fclean: clean oclean
+fclean:
+	$(RM) *~ $(NAME)
+	$(RM) $(OBJ)
 
 # Clean and rebuild source files.
-re: fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) all
 
-# Compile object files from source files.
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+# Compiles object files from source files.
+main.o: main.c m.h
+	$(CC) -c $(CFLAGS) main.c -o main.o
+
+school.o: school.c m.h
+	$(CC) -c $(CFLAGS) school.c -o school.o
