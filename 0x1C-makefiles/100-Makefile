@@ -1,0 +1,30 @@
+# make -f [file]
+
+
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Cleaning build artifacts
+pen_spark
+.PHONY: all clean oclean fclean re
+
+# make files executable
+all: m.h $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+# clean temporary files and executable
+clean:
+	$(RM) *~ $(NAME)
+
+# clean object files
+oclean:
+	$(RM) $(OBJ)
+
+# Cleaning temporary files, executables, and object files
+fclean: clean oclean
+
+# clean and rebuild source files
+re: oclean all
