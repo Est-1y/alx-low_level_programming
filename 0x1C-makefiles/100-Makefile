@@ -1,4 +1,4 @@
-# school project make file
+# school project Makefiles
 
 CC = gcc
 SRC = $(wildcard *.c)
@@ -6,27 +6,30 @@ OBJ = $(SRC:.c=.o)
 NAME = school
 RM = /bin/rm -f
 
-
-COMPILE = $(CC) -Wall -Werror -Wextra -pedantic
-
-# clean
-all: $(NAME)
-
-$(NAME): $(OBJ)
-        $(COMPILE) $(OBJ) -o $(NAME)
-
-clean:
-	$(RM) *~ $(NAME) $(OBJ)
-
-oclean:
-	$(RM) $(OBJ)
-
-fclean: clean
-
-re: fclean all
-
-# m.h
--include m.h
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
 # Clean and rebuild
 .PHONY: all clean oclean fclean re
+
+# dependencies
+-include m.h
+
+# Building the executable
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
+# clean all Emacs and Vim temporary files along with the executable
+clean:
+	$(RM) *~ $(NAME)
+
+# clean the object files.
+oclean:
+	$(RM) $(OBJ)
+
+# Deletes all Emacs and Vim temporary files, the executable, and the object files.
+fclean: clean oclean
+
+# Forces recompilation
+re: fclean all
