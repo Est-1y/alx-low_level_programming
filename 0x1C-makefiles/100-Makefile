@@ -1,32 +1,32 @@
-# Makefile for school project
+# school project make file
 
-# Variables
 CC = gcc
 SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 NAME = school
 RM = /bin/rm -f
-CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# Rules
+
+COMPILE = $(CC) -Wall -Werror -Wextra -pedantic
+
+# clean
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+        $(COMPILE) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) *~ $(NAME)
+	$(RM) *~ $(NAME) $(OBJ)
 
 oclean:
 	$(RM) $(OBJ)
 
 fclean: clean
-	$(RM) $(NAME)
 
 re: fclean all
 
-# Dependencies
+# m.h
 -include m.h
 
-# Phony targets
+# Clean and rebuild
 .PHONY: all clean oclean fclean re
