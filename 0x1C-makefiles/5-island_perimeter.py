@@ -4,19 +4,19 @@
 Island Perimeter module
 """
 
-
 def island_perimeter(grid):
     """
+    Calculate the perimeter.
     """
     perimeter = 0
 
     for i in range(len(grid)):
         for j in range(len(grid[0])):
             if grid[i][j] == 1:
-                # Based on the premise that a land cell adds 4 to the total
+                # Add 4 for each land cell.
                 perimeter += 4
 
-        # Evaluate land adjacency
+                # Subtract 1 for each adjacent land cell.
                 if i > 0 and grid[i - 1][j] == 1:
                     perimeter -= 1
                 if i < len(grid) - 1 and grid[i + 1][j] == 1:
