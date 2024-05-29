@@ -1,8 +1,11 @@
+# school project makefile
+
 CC = gcc
 SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
+RM = /bin/rm -f
 
 # confirms Makefile works with files that have the same name as rules.
 .PHONY: all clean oclean fclean re
@@ -10,7 +13,7 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 # Make all rule, respecting dependencies.
 all: $(NAME)
 
-$(NAME): $(OBJ) m.h
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
 # Clean temporary files and executable.
@@ -23,13 +26,13 @@ oclean:
 
 # Clean temporary files, executables, and object files.
 fclean:
-	$(RM) *~ $(NAME)
-	$(RM) $(OBJ)
+	$(RM) $(NAME)
 
 # Clean and rebuild source files.
 re:
 	$(MAKE) fclean
 	$(MAKE) all
+-include m.h
 
 # Compiles object files from source files.
 main.o: main.c m.h
