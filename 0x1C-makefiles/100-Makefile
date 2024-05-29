@@ -1,42 +1,32 @@
-# school project makefile
+# Makefile for school project
 
+# Variables
 CC = gcc
-SRC = main.c school.c
+SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 NAME = school
-CFLAGS = -Wall -Werror -Wextra -pedantic
 RM = /bin/rm -f
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
-# confirms Makefile works with files that have the same name as rules.
-.PHONY: all clean oclean fclean re
-
-# Make all rule, respecting dependencies.
+# Rules
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
-# Clean temporary files and executable.
 clean:
 	$(RM) *~ $(NAME)
 
-# Clean object files.
 oclean:
 	$(RM) $(OBJ)
 
-# Clean temporary files, executables, and object files.
-fclean:
+fclean: clean
 	$(RM) $(NAME)
 
-# Clean and rebuild source files.
-re:
-	$(MAKE) fclean
-	$(MAKE) all
+re: fclean all
+
+# Dependencies
 -include m.h
 
-# Compiles object files from source files.
-main.o: main.c m.h
-	$(CC) -c $(CFLAGS) main.c -o main.o
-
-school.o: school.c m.h
-	$(CC) -c $(CFLAGS) school.c -o school.o
+# Phony targets
+.PHONY: all clean oclean fclean re
