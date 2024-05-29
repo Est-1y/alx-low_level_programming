@@ -1,32 +1,20 @@
-# school project make file
+NAME=school
+CC=gcc  # Compiler (assuming gcc)
+RM=rm -f  # Delete command with force flag
 
-CC = gcc
-SRC = $(wildcard *.c)
-OBJ = $(SRC:.c=.o)
-NAME = school
-RM = /bin/rm -f
+# rules
+%.o: %.c m.h
+        $(CC) -Wall -Werror -Wextra -pedantic -c $< -o $@
 
+all: $(SRC:.c=.o)
+        $(CC) $(SRC:.c=.o) -o $(NAME)
 
-COMPILE = $(CC) -Wall -Werror -Wextra -pedantic
+clean fclean oclean re:
+	@$(RM) $(NAME) $(SRC:.c=.o) *~ *.swp
 
-# clean
-all: $(NAME)
+.PHONY: clean fclean oclean re
 
-$(NAME): $(OBJ)
-        $(COMPILE) $(OBJ) -o $(NAME)
-
-clean:
-	$(RM) *~ $(NAME) $(OBJ)
-
-oclean:
-	$(RM) $(OBJ)
-
-fclean: clean
-
-re: fclean all
-
-# m.h
--include m.h
-
-# Clean and rebuild
-.PHONY: all clean oclean fclean re
+# Ensures m.h existence
+m.h:
+	@echo "m.h is required for compilation. Please create it."
+	@exit 1
